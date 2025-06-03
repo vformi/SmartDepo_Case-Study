@@ -11,7 +11,7 @@ A simple ASP.NET Core Web API simulating mission planning for trams queued on a 
 
 1. Clone the repository
 ```bash
-git clone https://github.com/vformi/
+git clone https://github.com/vformi/SmartDepo_Case-Study.git
 ```
 
 ```bash
@@ -22,12 +22,16 @@ cd SmartDepo_CaseStudy
 ```bash
 dotnet run
 ```
+or run it on a specific port
+```bash
+dotnet run --urls http://localhost:8080
+```
 
 3. Open Swagger UI
 
 https://localhost:5000/swagger
 
-(Port may vary; check the console output of dotnet run)
+(Or another port, depending on how you ran it, check console output)
 
 ### Concurrency Simulation
 
