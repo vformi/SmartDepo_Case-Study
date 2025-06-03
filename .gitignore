@@ -1,0 +1,42 @@
+## Build
+bin/
+obj/
+out/
+
+## User-specific
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Rider
+.idea/
+*.sln.iml
+
+## Logs
+*.log
+
+## OS files
+.DS_Store
+Thumbs.db
+
+## VS Code
+.vscode/
+
+## Test results
+TestResults/
+*.ncrunch*
+*.coverage
+*.coveragexml
+
+## NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Others
+global.json
