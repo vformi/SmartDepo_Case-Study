@@ -15,13 +15,11 @@ builder.Services.AddSwaggerGen(opts =>
 
 var app = builder.Build();
 
-// Middleware
-app.UseHttpsRedirection();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tram Planning API v1");
-    c.RoutePrefix = "";
+    c.RoutePrefix = "api-docs";
 });
 
 var api = app.MapGroup("/api/v1");

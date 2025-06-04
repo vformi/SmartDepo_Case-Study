@@ -29,7 +29,7 @@ dotnet run --urls http://localhost:8080
 
 3. Open Swagger UI
 
-https://localhost:5000/swagger
+http://localhost:5000/api-docs
 
 (Or another port, depending on how you ran it, check console output)
 
