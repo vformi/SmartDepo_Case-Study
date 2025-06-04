@@ -46,7 +46,7 @@ public class TramManager
 
     /// <summary>
     /// Assigns a mission to the first available tram.
-    /// The lock is held for 5 seconds after the assignment to simulate a long-running operation.
+    /// Simulates a longer processing time (e.g., route calculation or DB write).
     /// </summary>
     /// <returns>A tuple indicating success and a message</returns>
     public async Task<(bool Success, string Message)> AssignMissionAsync()
@@ -54,29 +54,23 @@ public class TramManager
         if (!await _lock.WaitAsync(0))
             return (false, "Another client is currently performing planning.");
 
-        if (_tramsWithoutMission.Count == 0)
+        try
+        {
+            if (_tramsWithoutMission.Count == 0)
+                return (false, "No available tram.");
+
+            // Simulate a long-running operation
+            await Task.Delay(2000);
+
+            var tram = _tramsWithoutMission.Dequeue();
+            tram.HasMission = true;
+
+            return (true, $"Mission assigned to tram #{tram.Index}.");
+        }
+        finally
         {
             _lock.Release();
-            return (false, "No available tram.");
         }
-
-        var tram = _tramsWithoutMission.Dequeue();
-        tram.HasMission = true;
-
-        // Background task holds the lock for 5 seconds
-        _ = Task.Run(async () =>
-        {
-            try
-            {
-                await Task.Delay(5000); // Simulate long-running planning
-            }
-            finally
-            {
-                _lock.Release();
-            }
-        });
-
-        return (true, $"Mission assigned to tram #{tram.Index}.");
     }
 
     public IReadOnlyList<Tram> GetTrams() => _trams;
